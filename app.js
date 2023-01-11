@@ -4,17 +4,19 @@ const express = require('express');
 //importation de mongoose
 const mongoose = require('mongoose');
 
-//importe le router
+//importe le router user
 const userRoutes = require('./routes/user')
+
+//importé pour le chemin static
+const path = require('path')
 
 const dotenv = require("dotenv");
 dotenv.config();
 
-
 //appel de la méthode express pour créer l'application express 
 const app = express();
 
-mongoose.connect(process.env.DB_CONNEXION,
+mongoose.connect(process.env.DB_CONNECTION,
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))
@@ -34,7 +36,8 @@ app.use((req, res, next) => {
 
 //middleware pour enregistrer les routes avec la route attendue par le front end
 app.use('/api/auth', userRoutes);
-
+//ajout de la route pour les images
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 //export de la const app pour y accéder dans les autres fichier
 module.exports = app;
