@@ -4,11 +4,15 @@ const express = require('express');
 //importation de mongoose
 const mongoose = require('mongoose');
 
+//importe le router sauces
+const saucesRoutes = require('./routes/sauces')
+
 //importe le router user
 const userRoutes = require('./routes/user')
 
+
 //importé pour le chemin static
-const path = require('path')
+const path = require('path');
 
 const dotenv = require("dotenv");
 dotenv.config();
@@ -34,8 +38,12 @@ app.use((req, res, next) => {
   next();
 });
 
+//middleware pour  les sauces avec la route attendue par le front end
+app.use('/api/sauces', saucesRoutes);
+
 //middleware pour enregistrer les routes avec la route attendue par le front end
 app.use('/api/auth', userRoutes);
+
 //ajout de la route pour les images
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
