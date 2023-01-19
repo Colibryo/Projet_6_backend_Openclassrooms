@@ -26,7 +26,7 @@ mongoose.connect(process.env.DB_CONNECTION,
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch(() => console.log('Connexion à MongoDB échouée !'));
 
-//intercepte toutes requêtes avec content type Json et met à dispo ce corps de la requête sur l'objet requete dans req.body
+//intercepte toutes requêtes avec content type Json et met à disposition ce corps de la requête qui est parsé
 app.use(express.json());
 
 /*middleware général (pas de route spécifique pour s'appliquer à toutes les routes) utilisé par le serveur 
