@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-//package/ plugin -configuration pour empêcher de s'inscrire plusieurs fois avec le même email
+//plugin -configuration pour empêcher de s'inscrire plusieurs fois avec le même email
 const uniqueValidator = require('mongoose-unique-validator');
 
 //schéma utilisé pour modèle - authentification par email et mot de passe

@@ -4,7 +4,7 @@ const express = require('express');
 const router = express.Router();
 
 const userCtrl = require('../controllers/user');
-
+//définition des routes pour la création et la connxion de l'utilisateur
 router.post('/signup', userCtrl.signup);
 router.post('/login', userCtrl.login);
 

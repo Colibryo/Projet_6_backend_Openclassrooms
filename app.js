@@ -10,10 +10,10 @@ const saucesRoutes = require('./routes/sauces')
 //importe le router user
 const userRoutes = require('./routes/user')
 
-
 //importé pour le chemin static
 const path = require('path');
 
+//import de la dépendance dotenv pour les variables d'environnement du fichier env.
 const dotenv = require("dotenv");
 dotenv.config();
 
@@ -47,5 +47,5 @@ app.use('/api/auth', userRoutes);
 //ajout de la route pour les images
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
-//export de la const app pour y accéder dans les autres fichier
+//export de app pour y accéder dans les autres fichier
 module.exports = app;

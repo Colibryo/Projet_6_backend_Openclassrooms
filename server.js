@@ -18,6 +18,7 @@ const normalizePort = val => {
   }
   return false;
 };
+//Création de la constante contenant le port indiqué dans le fichier env.
 const port = normalizePort(process.env.PORT);
 app.set('port', port);
 
