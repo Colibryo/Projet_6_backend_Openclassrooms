@@ -1,6 +1,6 @@
 const Sauce = require('../models/sauces');
 
-const fs = require('fs')
+const fs = require('fs');
 
 // création d'une sauce avec un fichier image en utilisant la reqûete en paramètres et le modèle de la sauce
 exports.createSauce = (req, res, next) => {
