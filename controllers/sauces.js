@@ -79,16 +79,21 @@ exports.modifySauce = (req, res, next) => {
   } : { ...req.body };
   //suppression du userId pour éviter que l'utilisateur créé un objet et le modifie pour le réassigner à quelqu'un d'autre
   delete sauceObject._userId;
+  
   //récupération de l'objet en base de données
   Sauce.findOne({ _id: req.params.id })
     .then((sauce) => {
       if (sauce.userId != req.auth.userId) {
         res.status(401).json({ message: 'Requête non autorisée' });
       } else {
+        const filename = sauce.imageUrl.split('/images/')[1];
+        fs.unlink(`images/${filename}` , () => { 
         Sauce.updateOne({ _id: req.params.id }, { ...sauceObject, _id: req.params.id })
           .then(() => res.status(201).json({ message: 'Sauce modifiée avec succès!' }))
           .catch(error => res.status(401).json({ error: error }));
+        });
       }
+      
     })
 };
 
